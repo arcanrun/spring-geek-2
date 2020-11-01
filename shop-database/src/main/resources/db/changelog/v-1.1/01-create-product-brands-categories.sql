@@ -1,26 +1,21 @@
     create table products (
-        id bigint not null auto_increment,
+        id bigserial not null primary key,
         name varchar(255) not null,
         price decimal(5,2) not null,
         brand_id int not null,
-        category_id int not null,
-        primary key (id)
-    ) engine=InnoDB;
+        category_id int not null);
 GO
 
     create table categories (
-        id bigint not null auto_increment,
-        name varchar(255)  not null,
-        primary key (id)
-    ) engine=InnoDB;
+        id bigserial not null primary key,
+        name varchar(255)  not null
+    );
 GO
 
     create table brands (
-        id bigint not null auto_increment,
+        id bigserial not null primary key,
         name varchar(255) not null,
-        country varchar(255) not null,
-        primary key (id)
-    ) engine=InnoDB;
+        country varchar(255) not null);
 GO
 
     alter table products
