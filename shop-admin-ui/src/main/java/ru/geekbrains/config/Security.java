@@ -32,15 +32,23 @@ public class Security extends WebSecurityConfigurerAdapter {
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/").hasAnyRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+        http
+                .authorizeRequests()
+                .antMatchers("/css/*").permitAll()
+                .antMatchers("/js/*").permitAll()
+                .antMatchers("/webfonts/*").permitAll()
+                .antMatchers("/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/authenticateTheUser")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login")
                 .permitAll();
     }
 
