@@ -57,7 +57,7 @@ public class UserService implements UserDetailsService {
         log.info("idList={}", idList);
 
         Set<Role> roleSet = roleRepository.findAllByIdIn(idList);
-        log.info("roleSet={}", roleSet);
+
 
         user.setId(userEditRequest.getId());
         user.setName(userEditRequest.getUsername());

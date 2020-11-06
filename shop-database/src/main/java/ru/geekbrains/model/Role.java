@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "roles")
 @Data
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "roles")
 public class Role {
 
     @Id
@@ -24,7 +24,7 @@ public class Role {
     @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "role_id"),
@@ -32,3 +32,15 @@ public class Role {
     )
     private List<User> users;
 }
+
+
+
+
+
+
+
+
+
+
+
+
