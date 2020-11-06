@@ -1,21 +1,21 @@
-package ru.geekbrains.dto;
+package ru.geekbrains.dto.request.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.geekbrains.model.Role;
-import ru.geekbrains.model.User;
+import ru.geekbrains.dto.RoleDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class UserEditRequest {
 
     private Integer id;
 
@@ -30,7 +30,6 @@ public class UserDto {
     private String lastName;
 
     private String email;
-    @Valid
-    private Set<RoleDto> roles;
 
+    private List<Integer> roles;
 }

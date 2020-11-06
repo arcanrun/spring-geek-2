@@ -1,15 +1,14 @@
 package ru.geekbrains.controller;
 
 import javassist.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.dto.UserDto;
+import ru.geekbrains.dto.request.user.UserEditRequest;
 import ru.geekbrains.repository.RoleRepository;
 import ru.geekbrains.service.UserService;
 
@@ -17,6 +16,7 @@ import ru.geekbrains.service.UserService;
 import javax.validation.Valid;
 
 @Controller
+@Slf4j
 public class UserController {
 
     private final RoleRepository roleRepository;
@@ -45,7 +45,7 @@ public class UserController {
     public String adminEditUser(Model model, @PathVariable("id") Integer id) throws NotFoundException {
         model.addAttribute("edit", true);
         model.addAttribute("activePage", "Users");
-        model.addAttribute("user", userService.findById(id).orElseThrow(()-> new NotFoundException("Not found")));
+        model.addAttribute("user", userService.findById(id));
         model.addAttribute("roles", roleRepository.findAll());
         return "user_form";
     }
@@ -59,15 +59,19 @@ public class UserController {
         return "user_form";
     }
 
-    @PostMapping("/user")
-    public String adminUpsertUser(@Valid UserDto user, Model model, BindingResult bindingResult) {
+    @PutMapping("/user")
+    public String adminUpsertUser(@Valid UserEditRequest userEditRequest, BindingResult bindingResult, Model model) {
         model.addAttribute("activePage", "Users");
 
         if (bindingResult.hasErrors()) {
-            return "user_form";
+            bindingResult.getAllErrors().forEach(objectError -> {
+                log.info("PUT: adminUpsertUser(UserDto)::count errors={}==>{}", bindingResult.getAllErrors().size(), objectError);
+            });
+            model.addAttribute("error", true);
+            return "redirect:/user/" + userEditRequest.getId() + "/edit?error=true";
         }
 
-        userService.save(user);
+        userService.save(userEditRequest);
         return "redirect:/users";
     }
 

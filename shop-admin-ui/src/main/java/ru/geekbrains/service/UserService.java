@@ -1,5 +1,7 @@
 package ru.geekbrains.service;
 
+import javassist.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,24 +11,35 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.geekbrains.dto.RoleDto;
 import ru.geekbrains.dto.UserDto;
+import ru.geekbrains.dto.request.user.UserEditRequest;
 import ru.geekbrains.model.Role;
 import ru.geekbrains.model.User;
+import ru.geekbrains.repository.RoleRepository;
 import ru.geekbrains.repository.UserRepository;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@Slf4j
 public class UserService implements UserDetailsService {
 
     private UserRepository userRepository;
 
     private PasswordEncoder passwordEncoder;
 
+    private RoleRepository roleRepository;
+
+    @Autowired
+    public void setRoleRepository(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -38,30 +51,64 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void save(UserDto userDto) {
+    public void save(UserEditRequest userEditRequest) {
         User user = new User();
-        user.setId(userDto.getId());
-        user.setName(userDto.getUsername());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setEmail(userDto.getEmail());
-        user.setRoles(userDto.getRoles());
+        List<Integer> idList = userEditRequest.getRoles();
+        log.info("idList={}", idList);
+
+        Set<Role> roleSet = roleRepository.findAllByIdIn(idList);
+        log.info("roleSet={}", roleSet);
+
+        user.setId(userEditRequest.getId());
+        user.setName(userEditRequest.getUsername());
+        user.setPassword(passwordEncoder.encode(userEditRequest.getPassword()));
+        user.setEmail(userEditRequest.getEmail());
+        user.setRoles(roleSet);
         userRepository.save(user);
     }
 
 
     public List<UserDto> findAll() {
         return userRepository.findAll().stream()
-                .map(UserDto::new)
-                .collect(Collectors.toList());
+                .map(
+                        (u) -> new UserDto(
+                                u.getId(),
+                                u.getName(),
+                                u.getPassword(),
+                                u.getName(),
+                                u.getName(),
+                                u.getEmail(),
+                                u.getRoles()
+                                        .stream()
+                                        .map(e -> new RoleDto(e.getId(), e.getName()))
+                                        .collect(Collectors.toSet())))
+                                .collect(Collectors.toList());
     }
 
 
-    public Optional<UserDto> findById(int id) {
-        return userRepository.findById(id).map(UserDto::new);
+    public UserDto findById(int id) throws NotFoundException {
+        User userEntity = userRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format("Пользователь с id=%s не найден", id)));
+
+        UserDto userDto = new UserDto();
+        userDto.setId(userEntity.getId());
+        userDto.setEmail(userEntity.getEmail());
+        userDto.setFirstName(userEntity.getName());
+        userDto.setLastName(userEntity.getName());
+        userDto.setPassword(userEntity.getPassword());
+        userDto.setRoles(
+                userEntity
+                        .getRoles()
+                        .stream()
+                        .map((e) -> new RoleDto(e.getId(), e.getName())).collect(Collectors.toSet())
+        );
+        return userDto;
     }
 
 
     public void delete(int id) {
+        //todo chec if it is not current user
         userRepository.deleteById(id);
     }
 
