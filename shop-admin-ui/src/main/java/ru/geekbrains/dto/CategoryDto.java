@@ -1,10 +1,15 @@
 package ru.geekbrains.dto;
 
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.geekbrains.model.Category;
 
-import java.io.Serializable;
-
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CategoryDto{
 
     private int id;
@@ -13,38 +18,12 @@ public class CategoryDto{
 
     private long productCount;
 
-    public CategoryDto(int id, String name, long productCount) {
-        this.id = id;
-        this.name = name;
-        this.productCount = productCount;
-    }
-
-    public CategoryDto(Category category) {
-        this.id = category.getId();
-        this.name = category.getName();
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getProductCount() {
-        return productCount;
-    }
-
-    public void setProductCount(long productCount) {
-        this.productCount = productCount;
+    public static CategoryDto of(Category category){
+        return CategoryDto
+                .builder()
+                .id(category.getId())
+                .name(category.getName())
+                .productCount(category.getProducts().size())
+                .build();
     }
 }

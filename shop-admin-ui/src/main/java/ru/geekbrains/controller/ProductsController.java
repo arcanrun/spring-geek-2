@@ -1,6 +1,7 @@
 package ru.geekbrains.controller;
 
 import javassist.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.geekbrains.dto.ProductDto;
+import ru.geekbrains.dto.request.product.ProductEditRequest;
 import ru.geekbrains.repository.BrandRepository;
 import ru.geekbrains.repository.CategoryRepository;
 import ru.geekbrains.service.ProductService;
 
 
 @Controller
+@Slf4j
 public class ProductsController {
-
-    private static final Logger logger = LoggerFactory.getLogger(ProductsController.class);
 
     private final ProductService productService;
 
@@ -47,7 +48,7 @@ public class ProductsController {
     public String adminEditProduct(Model model, @PathVariable("id") Integer id) throws NotFoundException {
         model.addAttribute("edit", true);
         model.addAttribute("activePage", "Products");
-        model.addAttribute("product", productService.findById(id).orElseThrow(()-> new NotFoundException("Product not found")));
+        model.addAttribute("product", productService.findById(id));
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("brands", brandRepository.findAll());
         return "product_form";
@@ -71,13 +72,13 @@ public class ProductsController {
     }
 
     @PostMapping("/product")
-    public String adminUpsertProduct(Model model, RedirectAttributes redirectAttributes, ProductDto product) {
+    public String adminUpsertProduct(Model model, RedirectAttributes redirectAttributes, ProductEditRequest product) {
         model.addAttribute("activePage", "Products");
 
         try {
             productService.save(product);
         } catch (Exception ex) {
-            logger.error("Problem with creating or updating product", ex);
+            log.error("Problem with creating or updating product", ex);
             redirectAttributes.addFlashAttribute("error", true);
             if (product.getId() == null) {
                 return "redirect:/product/create";
