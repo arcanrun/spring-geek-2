@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 import ru.geekbrains.dto.BrandDto;
 import ru.geekbrains.dto.CategoryDto;
 import java.math.BigDecimal;
@@ -22,4 +23,6 @@ public class ProductEditRequest {
     private Integer category; // id
 
     private Integer brand; // id
+
+    private MultipartFile[] newPictures;
 }
