@@ -2,7 +2,7 @@ package ru.geekbrains.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.geekbrains.dto.response.CategoryResponse;
+import ru.geekbrains.dto.response.category.CategoryResponse;
 import ru.geekbrains.repository.CategoryRepository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package ru.geekbrains.dto.response;
+package ru.geekbrains.dto.response.category;
 
 
 import lombok.AllArgsConstructor;

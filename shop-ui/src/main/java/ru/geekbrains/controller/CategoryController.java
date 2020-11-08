@@ -30,7 +30,7 @@ public class CategoryController {
     @GetMapping
     public String categoryPage(Model model){
         model.addAttribute("categories",categoryService.findAll());
-//        model.addAttribute("products", )
+        model.addAttribute("products", productService.findAll());
         return "category";
     }
 }
