@@ -26,6 +26,20 @@
     </style>
 </head>
 
+
+<head th:fragment="head_product">
+    <title>Product</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-4.1.2/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/flexslider/flexslider.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/product.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/product_responsive.css}">
+</head>
+
 <header th:fragment="header" class="header">
     <div class="header_overlay"></div>
     <div class="header_content d-flex flex-row align-items-center justify-content-start">
