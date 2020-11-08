@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:fragment="product_item(prod)" class="product">
-    <div class="product_image"><img th:src="@{/picture/{pictureId}(pictureId=${prod.pictures.get(0).id})}" alt=""/></div>
+    <div class="product_image product_item_image"><img th:src="@{/picture/{pictureId}(pictureId=${prod.pictures.get(0).id})}" alt=""/></div>
     <div class="product_content">
         <div class="product_info d-flex flex-row align-items-start justify-content-start">
             <div>
