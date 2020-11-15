@@ -67,8 +67,8 @@
 											</div>
 										</div>
 										<div class="product_color product_text"><span></span>
-											<form th:action="@{/cart/{itemId}(itemId=${item.id})}" th:method="delete">
-												<button type="submit" class="cart_quantity_delete">
+											<form style="text-align: center" th:action="@{/cart/{itemId}(itemId=${item.id})}" th:method="delete">
+												<button class="remove_item_btn" type="submit">
 													<i class="fa fa-times"></i>
 												</button>
 											</form>
