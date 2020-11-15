@@ -38,6 +38,7 @@ public class CartController {
     public String cartPage(Model model) {
         log.info("items={}", cart.getItems().values());
         model.addAttribute("items", cart.getItems().values());
+        model.addAttribute("cartTotalPrice", cart.getTotalPrice());
         return "cart";
     }
 
@@ -47,5 +48,10 @@ public class CartController {
         response.sendRedirect(request.getHeader("referer"));
     }
 
+    @GetMapping("/clear")
+    public String clearCart(){
+        cart.clear();
+        return "redirect:/cart";
+    }
 
 }

@@ -41,8 +41,11 @@ public class CartService {
     }
 
     public BigDecimal getTotalPrice() {
-        BigDecimal totalPrice = new BigDecimal(0);
-        return totalPrice;
+       return items
+               .values()
+               .stream()
+               .map(OrderItem::getTotalPrice)
+               .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public void addProduct(int productId) throws NotFoundException {
@@ -52,9 +55,8 @@ public class CartService {
             item = new OrderItem();
             item.setId(productId);
             item.setItemPrice(product.getPrice());
-            item.setTotalPrice(item.getItemPrice());
             item.setProduct(product);
-            item.setQuantity(1);
+            item.setQuantity(0);
         }
         item.setQuantity(item.getQuantity() + 1);
         item.setTotalPrice(item.getItemPrice().multiply(new BigDecimal(item.getQuantity())));
