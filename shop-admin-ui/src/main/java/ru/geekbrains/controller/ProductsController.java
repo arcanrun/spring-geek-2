@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.geekbrains.dto.ProductDto;
 import ru.geekbrains.dto.request.product.ProductEditRequest;
+import ru.geekbrains.dto.response.product.ProductResponse;
 import ru.geekbrains.repository.BrandRepository;
 import ru.geekbrains.repository.CategoryRepository;
 import ru.geekbrains.service.ProductService;
@@ -65,7 +66,7 @@ public class ProductsController {
     public String adminCreateProduct(Model model) {
         model.addAttribute("create", true);
         model.addAttribute("activePage", "Products");
-        model.addAttribute("product", new ProductDto());
+        model.addAttribute("product", new ProductResponse());
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("brands", brandRepository.findAll());
         return "product_form";

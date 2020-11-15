@@ -1,29 +1,26 @@
-    create table products (
-        id bigserial not null primary key,
-        name varchar(255) not null,
-        price decimal(5,2) not null,
-        brand_id int not null,
-        category_id int not null);
+create table categories
+(
+    id   bigserial PRIMARY KEY,
+    name varchar(255) NOT NULL
+);
 GO
 
-    create table categories (
-        id bigserial not null primary key,
-        name varchar(255)  not null
-    );
+create table brands
+(
+    id      bigserial PRIMARY KEY,
+    name    varchar(255) NOT NULL,
+    country varchar(255)
+);
 GO
 
-    create table brands (
-        id bigserial not null primary key,
-        name varchar(255) not null,
-        country varchar(255));
-GO
+create table products
+(
+    id          bigserial PRIMARY KEY,
+    name        varchar(255)  NOT NULL,
+    price       decimal(5, 2) NOT NULL,
+    brand_id    bigint        NOT NULL,
+    category_id bigint        NOT NULL,
+    CONSTRAINT brand_id_fk FOREIGN KEY (brand_id) REFERENCES brands (id),
+    CONSTRAINT category_id_fk FOREIGN KEY (category_id) REFERENCES categories (id)
+);
 
-    alter table products
-        add foreign key (brand_id)
-                references brands (id);
-GO
-
-    alter table products
-        add foreign key (category_id)
-            references categories (id);
-GO

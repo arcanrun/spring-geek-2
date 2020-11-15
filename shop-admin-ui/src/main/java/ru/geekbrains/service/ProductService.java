@@ -8,19 +8,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import ru.geekbrains.dto.BrandDto;
 import ru.geekbrains.dto.ProductDto;
 import ru.geekbrains.dto.request.product.ProductEditRequest;
 import ru.geekbrains.dto.response.product.ProductResponse;
 import ru.geekbrains.dto.response.product.ProductTableResponse;
-import ru.geekbrains.model.Brand;
-import ru.geekbrains.model.Category;
-import ru.geekbrains.model.Product;
+import ru.geekbrains.model.*;
 import ru.geekbrains.repository.BrandRepository;
 import ru.geekbrains.repository.CategoryRepository;
 import ru.geekbrains.repository.ProductRepository;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -106,6 +106,25 @@ public class ProductService {
                                 String.format(
                                         "Brand with provided id=%d is not found",
                                         productDto.getBrand())));
+
+        if (productDto.getNewPictures() != null) {
+            for (MultipartFile newPicture : productDto.getNewPictures()) {
+                log.info("Product {} file {} size {}", product.getId(),
+                        newPicture.getOriginalFilename(), newPicture.getSize());
+
+                if (product.getPictures() == null) {
+                    product.setPictures(new ArrayList<>());
+                }
+
+                product.getPictures().add(
+                        new Picture(
+                                newPicture.getOriginalFilename(),
+                                newPicture.getContentType(),
+                                new PictureData(newPicture.getBytes())
+                        )
+                );
+            }
+        }
 
         product.setName(productDto.getName());
         product.setCategory(category);
