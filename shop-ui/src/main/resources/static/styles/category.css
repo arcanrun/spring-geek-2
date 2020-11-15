@@ -1090,7 +1090,7 @@ section
 	width: 100%;
 	height: 100%;
 }
-.product_buttons > div > div
+.product_buttons > div > a
 {
 	width: 50%;
 	height: 100%;
@@ -1102,28 +1102,28 @@ section
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
 }
-.product_buttons > div > div svg
+.product_buttons > div > a svg
 {
 	max-width: 100%;
 	height: auto;
 }
-.home_item_large .product_buttons > div > div
+.home_item_large .product_buttons > div > a
 {
 	border-top: solid 1px rgba(255,255,255,0.2);
 }
-.product_buttons > div > div:hover
+.product_buttons > div > a:hover
 {
 	background: #2fce98;
 }
-.home_item_large .product_buttons > div > div:hover
+.home_item_large .product_buttons > div > a:hover
 {
 	background: rgba(255,255,255,0.1);
 }
-.product_buttons > div > div:first-of-type
+.product_buttons > div > a:first-of-type
 {
 	border-right: solid 1px #ededed;
 }
-.home_item_large .product_buttons > div > div:first-of-type
+.home_item_large .product_buttons > div > a:first-of-type
 {
 	border-right: solid 1px rgba(255,255,255,0.2);
 }
