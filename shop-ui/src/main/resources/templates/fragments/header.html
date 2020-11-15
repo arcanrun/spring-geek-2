@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:fragment="head">
+<head th:fragment="head_category">
     <title>Category</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +26,6 @@
     </style>
 </head>
 
-
 <head th:fragment="head_product">
     <title>Product</title>
     <meta charset="utf-8">
@@ -38,6 +37,18 @@
     <link rel="stylesheet" type="text/css" th:href="@{/plugins/flexslider/flexslider.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/product.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/product_responsive.css}">
+</head>
+
+<head th:fragment="head_cart">
+    <title>Cart</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-4.1.2/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/cart.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/cart_responsive.css}">
 </head>
 
 <header th:fragment="header" class="header">
@@ -72,7 +83,7 @@
             <!-- User -->
             <div class="user"><a href="#"><div><img th:src="@{/images/user.svg}" alt="https://www.flaticon.com/authors/freepik"><div>1</div></div></a></div>
             <!-- Cart -->
-            <div class="cart"><a href="cart.html"><div><img class="svg" th:src="@{/images/cart.svg}" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
+            <div class="cart"><a th:href="@{/cart}"><div><img class="svg" th:src="@{/images/cart.svg}" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
             <!-- Phone -->
             <div class="header_phone d-flex flex-row align-items-center justify-content-start">
                 <div><div><img th:src="@{/images/phone.svg}" alt="https://www.flaticon.com/authors/freepik"></div></div>
