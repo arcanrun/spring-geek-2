@@ -5,9 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.service.CartService;
 import ru.geekbrains.service.ProductService;
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +49,12 @@ public class CartController {
     @GetMapping("/clear")
     public String clearCart(){
         cart.clear();
+        return "redirect:/cart";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteItem(@PathVariable Integer id){
+        cart.remove(id);
         return "redirect:/cart";
     }
 

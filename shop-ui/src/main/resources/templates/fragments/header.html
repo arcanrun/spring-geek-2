@@ -49,6 +49,20 @@
     <link rel="stylesheet" type="text/css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/cart.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/cart_responsive.css}">
+    <style>
+        .remove_item_btn{
+            font-weight: bold;
+            text-transform: lowercase;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.5;
+            text-align: center;
+            transition: 0.5s;
+        }
+        .remove_item_btn:hover{
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <header th:fragment="header" class="header">
