@@ -5,8 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="3" author="arkadii_nazin">
-        <sqlFile dbms="mysql"
+    <changeSet id="2fdea7e4-1c5c-11eb-adc1-0242ac120002" author="arkadii.nazin">
+        <sqlFile dbms="postgresql"
                  encoding="utf8"
                  endDelimiter="\nGO"
                  path="01-create-product-brands-categories.sql"
@@ -14,7 +14,7 @@
                  splitStatements="true"
                  stripComments="true"/>
         <rollback>
-            <sqlFile dbms="mysql"
+            <sqlFile dbms="postgresql"
                      encoding="utf8"
                      endDelimiter="\nGO"
                      path="01-drop-products-brands-categories.sql"
@@ -24,11 +24,11 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="4" author="arkadii_nazin">
-        <sqlFile dbms="mysql"
+    <changeSet id="35ce2634-1c5c-11eb-adc1-0242ac120002" author="arkadii.nazin">
+        <sqlFile dbms="postgresql"
                  encoding="utf8"
                  endDelimiter="\nGO"
-                 path="01-insert-default-users.sql"
+                 path="01-insert-default-products-brands-categories.sql"
                  relativeToChangelogFile="true"
                  splitStatements="true"
                  stripComments="true"/>

@@ -1,11 +1,21 @@
 package ru.geekbrains.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
-@Table(name = "product")
+@Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,45 +33,9 @@ public class Product {
     @JoinColumn(name = "category_id")
     Category category;
 
-    public Product(){}
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
+    @ManyToMany(fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+    @JoinTable(name = "products_pictures",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "picture_id"))
+    private List<Picture> pictures;
 }

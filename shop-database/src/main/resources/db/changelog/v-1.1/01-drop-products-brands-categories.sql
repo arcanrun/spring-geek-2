@@ -1,16 +1,6 @@
-    alter table products
-       drop foreign key brand_id;
+drop table products;
 GO
-
-    alter table products
-       drop foreign key category_id;
+drop table categories;
 GO
-
-    drop table brands;
-GO
-
-    drop table categories;
-GO
-
-    drop table products;
+drop table brands;
 GO

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head">
+    <title>Category</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-4.1.2/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}" >
+    <link rel="stylesheet" type="text/css" th:href="@{plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/OwlCarousel2-2.2.1/animate.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/category.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/category_responsive.css}">
+    <style>
+        .product_item_image{
+            overflow: hidden;
+            height: 300px;
+        }
+        .product_item_image img{
+            width: 100%;
+        }
+    </style>
+</head>
+
+
+<head th:fragment="head_product">
+    <title>Product</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Little Closet template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/bootstrap-4.1.2/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/flexslider/flexslider.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/product.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/product_responsive.css}">
+</head>
+
+<header th:fragment="header" class="header">
+    <div class="header_overlay"></div>
+    <div class="header_content d-flex flex-row align-items-center justify-content-start">
+        <div class="logo">
+            <a href="#">
+                <div class="d-flex flex-row align-items-center justify-content-start">
+                    <div><img th:src="@{/images/logo_1.png}" alt=""></div>
+                    <div>Little Closet</div>
+                </div>
+            </a>
+        </div>
+        <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
+        <nav class="main_nav">
+            <ul class="d-flex flex-row align-items-start justify-content-start">
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Kids</a></li>
+                <li><a href="#">Home Deco</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">
+            <!-- Search -->
+            <div class="header_search">
+                <form action="#" id="header_search_form">
+                    <input type="text" class="search_input" placeholder="Search Item" required="required">
+                    <button class="header_search_button"><img th:src="@{/images/search.png}" alt=""></button>
+                </form>
+            </div>
+            <!-- User -->
+            <div class="user"><a href="#"><div><img th:src="@{/images/user.svg}" alt="https://www.flaticon.com/authors/freepik"><div>1</div></div></a></div>
+            <!-- Cart -->
+            <div class="cart"><a href="cart.html"><div><img class="svg" th:src="@{/images/cart.svg}" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
+            <!-- Phone -->
+            <div class="header_phone d-flex flex-row align-items-center justify-content-start">
+                <div><div><img th:src="@{/images/phone.svg}" alt="https://www.flaticon.com/authors/freepik"></div></div>
+                <div>+1 912-252-7350</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+</html>

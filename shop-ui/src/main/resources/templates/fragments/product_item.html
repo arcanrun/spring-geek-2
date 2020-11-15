@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:fragment="product_item(prod)" class="product">
+    <div class="product_image product_item_image"><img th:src="@{/picture/{pictureId}(pictureId=${prod.pictures.get(0).id})}" alt=""/></div>
+    <div class="product_content">
+        <div class="product_info d-flex flex-row align-items-start justify-content-start">
+            <div>
+                <div>
+                    <div class="product_name"><a th:href="@{/products/{prodId}(prodId=${prod.id})}" th:text="${prod.name}"></a></div>
+                    <div class="product_category">In <a th:href="@{/categories/categoryId(categoryId=${prod.category.id})}" th:text="${prod.category.name}"></a></div>
+                </div>
+            </div>
+            <div class="ml-auto text-right">
+                <div class="rating_r rating_r_4 home_item_rating"><i></i><i></i><i></i><i></i><i></i></div>
+<!--                <div class="product_price text-right">$3<span>.99</span></div>-->
+                <div class="product_price text-right" th:text="${prod.price}"></div>
+            </div>
+        </div>
+        <div class="product_buttons">
+            <div class="text-right d-flex flex-row align-items-start justify-content-start">
+                <div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
+                    <div><div><img th:src="@{/images/heart_2.svg}" class="svg" alt=""><div>+</div></div></div>
+                </div>
+                <div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
+                    <div><div><img th:src="@{/images/cart.svg}" class="svg" alt=""><div>+</div></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
