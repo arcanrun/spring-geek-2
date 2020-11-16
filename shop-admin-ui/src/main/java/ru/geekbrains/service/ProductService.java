@@ -1,16 +1,12 @@
 package ru.geekbrains.service;
 
 import javassist.NotFoundException;
-import liquibase.pro.packaged.A;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import ru.geekbrains.dto.BrandDto;
-import ru.geekbrains.dto.ProductDto;
 import ru.geekbrains.dto.request.product.ProductEditRequest;
 import ru.geekbrains.dto.response.product.ProductResponse;
 import ru.geekbrains.dto.response.product.ProductTableResponse;
@@ -18,11 +14,9 @@ import ru.geekbrains.model.*;
 import ru.geekbrains.repository.BrandRepository;
 import ru.geekbrains.repository.CategoryRepository;
 import ru.geekbrains.repository.ProductRepository;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

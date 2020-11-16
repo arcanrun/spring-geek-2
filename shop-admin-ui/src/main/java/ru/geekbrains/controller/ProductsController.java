@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ru.geekbrains.dto.ProductDto;
 import ru.geekbrains.dto.request.product.ProductEditRequest;
 import ru.geekbrains.dto.response.product.ProductResponse;
 import ru.geekbrains.repository.BrandRepository;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header :: head"></head><!--/head-->
+<head th:replace="fragments/header :: head_category"></head><!--/head-->
 <body>
 
 <!-- Menu -->
@@ -63,9 +63,9 @@
 									</ul>
 								</div>
 								<div class="product_view d-flex flex-row align-items-center justify-content-start">
-									<div class="view_item active"><img src="../static/images/view_1.png" alt=""></div>
-									<div class="view_item"><img src="../static/images/view_2.png" alt=""></div>
-									<div class="view_item"><img src="../static/images/view_3.png" alt=""></div>
+									<div class="view_item active"><img th:src="@{/images/view_1.png}" alt=""></div>
+									<div class="view_item"><img th:src="@{/images/view_2.png}" alt=""></div>
+									<div class="view_item"><img th:src="@{/images/view_3.png}" alt=""></div>
 								</div>
 								<div class="products_dropdown text-right product_dropdown_filter">
 									<div class="isotope_filter_text"><span>Filter</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
