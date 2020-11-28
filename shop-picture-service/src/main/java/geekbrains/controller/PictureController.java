@@ -1,4 +1,4 @@
-package geekbrains.service.controller;
+package geekbrains.controller;
 
 import geekbrains.service.PictureService;
 import javassist.NotFoundException;
