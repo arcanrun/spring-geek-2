@@ -1,4 +1,4 @@
-package geekbrains.controller.repr;
+package ru.geekbrains.controller.repr;
 
 
 import lombok.AllArgsConstructor;

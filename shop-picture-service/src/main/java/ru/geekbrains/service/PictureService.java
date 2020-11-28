@@ -1,4 +1,4 @@
-package geekbrains.service;
+package ru.geekbrains.service;
 
 
 

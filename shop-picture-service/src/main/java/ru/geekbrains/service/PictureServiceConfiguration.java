@@ -1,4 +1,4 @@
-package geekbrains.service;
+package ru.geekbrains.service;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -16,13 +16,13 @@ public class PictureServiceConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "picture.storage.type", havingValue = "files")
+    @ConditionalOnProperty(name = "picture.storage.type", havingValue = "${files}")
     public PictureService pictureServiceFileImpl(PictureRepository pictureRepository) {
         return new PictureServiceFileImpl(pictureRepository);
     }
 
     @Bean
-    @ConditionalOnProperty(name = "picture.storage.type", havingValue = "database")
+    @ConditionalOnProperty(name = "picture.storage.type", havingValue = "${database}")
     public PictureServiceBlobImpl pictureServiceBlob(PictureRepository pictureRepository) {
         return new PictureServiceBlobImpl(pictureRepository);
     }

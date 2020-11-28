@@ -1,4 +1,4 @@
-package geekbrains.service;
+package ru.geekbrains.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.geekbrains.model.Picture;

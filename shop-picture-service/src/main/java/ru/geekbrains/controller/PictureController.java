@@ -1,7 +1,6 @@
 package ru.geekbrains.controller;
 
-import geekbrains.service.PictureService;
-import geekbrains.service.PictureServiceBlobImpl;
+import ru.geekbrains.service.PictureService;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.geekbrains.service.PictureServiceBlob;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -21,10 +19,10 @@ public class PictureController {
 
     private static final Logger logger = LoggerFactory.getLogger(PictureController.class);
 
-    private PictureServiceBlob pictureService;
+    private PictureService pictureService;
 
     @Autowired
-    public void setPictureService(PictureServiceBlob pictureService) {
+    public void setPictureService(PictureService pictureService) {
         this.pictureService = pictureService;
     }
 
