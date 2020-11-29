@@ -30,6 +30,7 @@
         <module>shop-common</module>
         <module>config-server</module>
         <module>shop-pic-cloud</module>
+        <module>spring-eureka</module>
 
 
     </modules>
