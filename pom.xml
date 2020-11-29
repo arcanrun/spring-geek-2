@@ -29,6 +29,9 @@
         <module>shop-picture-service</module>
         <module>shop-common</module>
         <module>config-server</module>
+        <module>shop-pic-cloud</module>
+
+
     </modules>
     <dependencyManagement>
         <dependencies>
