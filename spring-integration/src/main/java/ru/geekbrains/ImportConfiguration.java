@@ -19,9 +19,14 @@ import org.springframework.integration.jpa.dsl.JpaUpdatingOutboundEndpointSpec;
 import org.springframework.integration.jpa.support.PersistMode;
 import org.springframework.messaging.MessageHandler;
 import ru.geekbrains.model.Brand;
+import ru.geekbrains.model.Category;
+import ru.geekbrains.model.Product;
 
 import javax.persistence.EntityManagerFactory;
 import java.io.File;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class ImportConfiguration {
@@ -56,7 +61,7 @@ public class ImportConfiguration {
     @Bean
     public JpaUpdatingOutboundEndpointSpec jpaPersistHandler() {
         return Jpa.outboundAdapter(this.entityManagerFactory)
-                .entityClass(Brand.class)
+                .entityClass(Product.class)
                 .persistMode(PersistMode.PERSIST);
     }
 
@@ -66,10 +71,26 @@ public class ImportConfiguration {
                 .filter(msg -> ((File) msg).getName().endsWith(".txt"))
                 .transform(new FileToStringTransformer())
                 //.split(s -> s.delimiters("\n"))
-                .<String, Brand>transform(name -> {
-                    Brand brand = new Brand();
-                    brand.setName(name);
-                    return brand;
+                .<String, List<Product>>transform(item -> {
+                    List<Product> res = new ArrayList<>();
+                    String[] row = item.split("\n");
+                    for (String r : row) {
+                        String[] line = r.split(" ");
+                        Brand brand = new Brand();
+                        brand.setId(Integer.parseInt(line[2]));
+
+                        Category category = new Category();
+                        category.setId(Integer.parseInt(line[3]));
+
+                        Product product = new Product();
+                        product.setName(line[0]);
+                        product.setPrice(new BigDecimal(line[1]));
+                        product.setBrand(brand);
+                        product.setCategory(category);
+                        res.add(product);
+                    }
+
+                    return res;
                 })
                 .handle(jpaPersistHandler(), ConsumerEndpointSpec::transactional)
                 .get();
