@@ -32,6 +32,7 @@
         <module>shop-pic-cloud</module>
         <module>spring-eureka</module>
         <module>spring-gateway</module>
+        <module>spring-integration</module>
 
 
     </modules>
