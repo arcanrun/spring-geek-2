@@ -37,10 +37,10 @@ public class ProductResponse {
 
     private MultipartFile[] newPictures;
 
-    public static ProductResponse of(Product product){
+    public static ProductResponse of(Product product) {
         CategoryDto categoryDto = CategoryDto.of(product.getCategory());
         BrandDto brandDto = BrandDto.of(product.getBrand());
-        List<PictureDto> pictureDtoList = product
+        List<PictureDto> pictureDtoList = product.getPictures() == null ? null : product
                 .getPictures()
                 .stream()
                 .map(PictureDto::of)
@@ -57,4 +57,4 @@ public class ProductResponse {
                 .build();
     }
 
-    }
+}
