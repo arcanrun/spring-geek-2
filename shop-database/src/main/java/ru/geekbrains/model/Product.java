@@ -38,4 +38,10 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "picture_id"))
     private List<Picture> pictures;
+
+    public Product(int id, String name, BigDecimal price){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
 }
