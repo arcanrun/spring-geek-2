@@ -99,7 +99,7 @@ public class CategoryControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(view().name("category"))
                 .andExpect(model().attributeExists("categories"))
-                .andExpect(model().attribute("categories", new BaseMatcher<List<Category>>(){
+                .andExpect(model().attribute("categories", new BaseMatcher<List<CategoryResponse>>() {
 
                     @Override
                     public void describeTo(Description description) {
@@ -110,8 +110,8 @@ public class CategoryControllerTest {
                     public boolean matches(Object o) {
                         if (o instanceof List) {
                             List<CategoryResponse> list = new ArrayList<CategoryResponse>((Collection<? extends CategoryResponse>) o);
-                            for (CategoryResponse c: list) {
-                                if(c == null){
+                            for (CategoryResponse c : list) {
+                                if (c == null) {
                                     return false;
                                 }
                             }
@@ -121,6 +121,30 @@ public class CategoryControllerTest {
                         }
                         return false;
                     }
-                }));
+                }))
+                .andExpect(model().attributeExists("products"))
+                .andExpect(model().attribute("products", new BaseMatcher<List<ProductResponse>>() {
+                    @Override
+                    public void describeTo(Description description) {
+
+                    }
+
+                    @Override
+                    public boolean matches(Object o) {
+                        if (o instanceof List) {
+                            List<ProductResponse> list = new ArrayList<ProductResponse>((Collection<? extends ProductResponse>) o);
+                            for (ProductResponse c : list) {
+                                if (c == null) {
+                                    return false;
+                                }
+                            }
+
+                            ProductResponse productResponse = list.get(0);
+                            return productResponse.getId().equals(product.getId());
+                        }
+                        return false;
+                    }
+                }))
+        ;
     }
 }
