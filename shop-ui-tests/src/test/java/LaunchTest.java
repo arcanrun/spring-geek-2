@@ -7,7 +7,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(plugin = {"html:target/cucumber-html-report"},
         features = {"classpath:features"},
         glue = {"ru.geekmarket.steps"},
-        snippets = SnippetType.CAMELCASE)
+        snippets = SnippetType.CAMELCASE
+)
 public class LaunchTest {
 
 }
