@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class ProductDto {
+public class ProductDto implements ru.geekbrains.dto.response.product.dtodecorator.ProductDto {
 
     private Integer id;
 
@@ -45,58 +45,59 @@ public class ProductDto {
         this.newPictures = newPictures;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }
-
+    @Override
     public void setName(String name) {
         this.name = name;
     }
-
+    @Override
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
+    @Override
     public void setCategory(CategoryDto category) {
         this.category = category;
     }
-
+    @Override
     public void setBrand(BrandDto brand) {
         this.brand = brand;
     }
-
+    @Override
     public void setPictures(List<PictureDto> pictures) {
         this.pictures = pictures;
     }
-
+    @Override
     public void setNewPictures(MultipartFile[] newPictures) {
         this.newPictures = newPictures;
     }
-
+    @Override
     public Integer getId() {
         return id;
     }
-
+    @Override
     public String getName() {
         return name;
     }
-
+    @Override
     public BigDecimal getPrice() {
         return price;
     }
-
+    @Override
     public CategoryDto getCategory() {
         return category;
     }
-
+    @Override
     public BrandDto getBrand() {
         return brand;
     }
-
+    @Override
     public List<PictureDto> getPictures() {
         return pictures;
     }
-
+    @Override
     public MultipartFile[] getNewPictures() {
         return newPictures;
     }
