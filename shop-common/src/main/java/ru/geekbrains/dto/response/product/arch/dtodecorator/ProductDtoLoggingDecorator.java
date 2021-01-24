@@ -1,4 +1,4 @@
-package ru.geekbrains.dto.response.product.dtodecorator;
+package ru.geekbrains.dto.response.product.arch.dtodecorator;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.geekbrains.dto.BrandDto;

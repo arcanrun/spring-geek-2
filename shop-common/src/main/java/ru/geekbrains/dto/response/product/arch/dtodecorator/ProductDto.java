@@ -1,4 +1,4 @@
-package ru.geekbrains.dto.response.product.dtodecorator;
+package ru.geekbrains.dto.response.product.arch.dtodecorator;
 
 import org.springframework.web.multipart.MultipartFile;
 import ru.geekbrains.dto.BrandDto;

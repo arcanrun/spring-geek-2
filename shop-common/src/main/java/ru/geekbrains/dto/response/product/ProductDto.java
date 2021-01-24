@@ -1,21 +1,15 @@
 package ru.geekbrains.dto.response.product;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 import ru.geekbrains.dto.BrandDto;
 import ru.geekbrains.dto.CategoryDto;
 import ru.geekbrains.dto.PictureDto;
-import ru.geekbrains.model.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
-public class ProductDto implements ru.geekbrains.dto.response.product.dtodecorator.ProductDto {
+public class ProductDto implements ru.geekbrains.dto.response.product.arch.dtodecorator.ProductDto {
 
     private Integer id;
 
